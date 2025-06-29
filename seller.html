@@ -341,7 +341,7 @@
                         <div class="product-info">
                             <h3>${product.name}</h3>
                             <p class="product-category">${product.category}</p>
-                            <p class="product-price">$${product.price}</p>
+                            <p class="product-price">Rs.${product.price}</p>
                             <p class="product-stock">Stock: ${product.stock}</p>
                             <div class="product-actions">
                                 <button onclick="editProduct('${product.id}')" class="action-btn secondary small">Edit</button>
@@ -353,18 +353,51 @@
             }
         }
 
-        // Add product functionality
+        let editingProductId = null;
+
+        // Edit product functionality
+        function editProduct(productId) {
+            const products = JSON.parse(localStorage.getItem('products') || '[]');
+            const product = products.find(p => p.id === productId);
+            if (!product) {
+                alert('Product not found!');
+                return;
+            }
+            // Fill the form with product data
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productCategory').value = product.category;
+            document.getElementById('productPrice').value = product.price;
+            document.getElementById('productStock').value = product.stock;
+            document.getElementById('productDescription').value = product.description;
+            document.getElementById('productFeatures').value = (product.features || []).join('\n');
+            document.getElementById('productTargetAudience').value = product.targetAudience || '';
+            document.getElementById('productFormat').value = product.format || '';
+            document.getElementById('productImage').value = product.image || '';
+            // Photo preview
+            if (product.photoData) {
+                document.getElementById('photoPreview').src = product.photoData;
+                document.getElementById('photoPreview').style.display = 'block';
+                document.getElementById('uploadPlaceholder').style.display = 'none';
+                document.getElementById('photoActions').style.display = 'flex';
+            } else {
+                removePhoto();
+            }
+            editingProductId = productId;
+            showTab('add-product');
+            // Change submit button text
+            document.querySelector('#addProductForm .action-btn.primary').textContent = 'Update Product';
+        }
+
+        // Add or update product functionality
         document.getElementById('addProductForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const currentUser = auth.getCurrentUser();
             if (!currentUser) {
                 alert('Please log in to add products');
                 return;
             }
-            
             const productData = {
-                id: Date.now().toString(),
+                id: editingProductId || Date.now().toString(),
                 sellerId: currentUser.id,
                 name: document.getElementById('productName').value,
                 category: document.getElementById('productCategory').value,
@@ -376,20 +409,23 @@
                 format: document.getElementById('productFormat').value,
                 image: document.getElementById('productImage').value,
                 photoData: document.getElementById('photoPreview').src || null,
-                createdAt: new Date().toISOString()
+                createdAt: editingProductId ? (JSON.parse(localStorage.getItem('products') || '[]').find(p => p.id === editingProductId)?.createdAt || new Date().toISOString()) : new Date().toISOString()
             };
-            
-            // Save product to localStorage
-            const products = JSON.parse(localStorage.getItem('products') || '[]');
-            products.push(productData);
+            let products = JSON.parse(localStorage.getItem('products') || '[]');
+            if (editingProductId) {
+                // Update existing product
+                products = products.map(p => p.id === editingProductId ? productData : p);
+            } else {
+                // Add new product
+                products.push(productData);
+            }
             localStorage.setItem('products', JSON.stringify(products));
-            
-            // Reset form
             document.getElementById('addProductForm').reset();
-            removePhoto(); // Reset photo upload
-            
-            // Show success message and switch to products tab
-            alert('Product added successfully!');
+            removePhoto();
+            editingProductId = null;
+            // Reset submit button text
+            document.querySelector('#addProductForm .action-btn.primary').textContent = 'Add Product';
+            alert(editingProductId ? 'Product updated successfully!' : 'Product added successfully!');
             showTab('products');
         });
 
@@ -476,11 +512,6 @@
 
         function changePhoto() {
             document.getElementById('productPhoto').click();
-        }
-
-        // Edit product (placeholder function)
-        function editProduct(productId) {
-            alert('Edit product functionality would be implemented here for product ID: ' + productId);
         }
 
         // Delete product
