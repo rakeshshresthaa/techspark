@@ -3,108 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Dashboard</title>
+    <title>ShopSpark - Customer</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="customer.css">
 </head>
-<body class="dashboard">
-    <header class="dashboard-header">
-        <h1 class="dashboard-title">Customer Dashboard</h1>
-        <div id="userInfo" class="user-info">
-            <!-- User info will be populated by JavaScript -->
+<body style="background: #f8f9fa;">
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="ShopSpark Logo" height="36">
+            <span style="font-weight:700;font-size:1.2rem;color:#667eea;letter-spacing:1px;">TechSpark</span>
         </div>
-    </header>
-
-    <main class="dashboard-content">
-        <div class="dashboard-card">
-            <h2>My Account</h2>
-            <p>Welcome to your Customer Dashboard. Browse products, track your orders, and manage your account.</p>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">12</div>
-                    <div class="stat-label">Orders Placed</div>
+        <div class="navbar-menu">
+            <a href="#">Home</a>
+            <a href="#">Product</a>
+            <a href="#">About us</a>
+            <a href="#">FAQ</a>
+        </div>
+        <div class="navbar-search">
+            <input type="text" placeholder="Search">
+            <button class="navbar-signin" onclick="window.location.href='index.html'">Sign in</button>
+        </div>
+    </nav>
+    <main class="dashboard-content" style="max-width:1400px;">
+        <div class="section-title">Most Popular Products</div>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="data:image/jpeg;base64,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" alt="Muffin">
+                <div class="product-title">Chocolate Muffin</div>
+                <div class="product-price">Rs.65.00</div>
+                <div class="product-desc">Quick-baked muffin. Sometimes described in Britain as an 'American muffin'. 100% classic breakfast treat with chocolate chips.</div>
+                <div class="product-actions">
+                    <button class="buy-btn">Buy Now</button>
+                    <button class="cart-btn">Add to cart</button>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">Pending Orders</div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Shoes">
+                <div class="product-title">Custom Sneakers</div>
+                <div class="product-price">Rs.3,999</div>
+                <div class="product-desc">Classic white kicks for fashion & function. Customizable with hand-painted designs and vibrant colors.</div>
+                <div class="product-actions">
+                    <button class="buy-btn">Buy Now</button>
+                    <button class="cart-btn">Add to cart</button>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">$450</div>
-                    <div class="stat-label">Total Spent</div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Rice Cooker">
+                <div class="product-title">Rice Cooker</div>
+                <div class="product-price">Rs.2,499</div>
+                <div class="product-desc">Multi-task rice cooker. 3-liter, compact kitchen appliance. Perfect for quick and easy meals for the whole family.</div>
+                <div class="product-actions">
+                    <button class="buy-btn">Buy Now</button>
+                    <button class="cart-btn">Add to cart</button>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">5★</div>
-                    <div class="stat-label">Reviews Given</div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Gas Stove">
+                <div class="product-title">3-Burner Gas Stove</div>
+                <div class="product-price">Rs.5,999</div>
+                <div class="product-desc">Toughened glass 3-burner stove. Easy to clean, high efficiency, and modern design for every kitchen.</div>
+                <div class="product-actions">
+                    <button class="buy-btn">Buy Now</button>
+                    <button class="cart-btn">Add to cart</button>
                 </div>
             </div>
         </div>
-
-        <div class="dashboard-card">
-            <h2>Recent Orders</h2>
-            <p>Track your recent purchases and order status:</p>
-            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
-                <li>View order history and details</li>
-                <li>Track shipping and delivery status</li>
-                <li>Download invoices and receipts</li>
-                <li>Request returns or exchanges</li>
-                <li>Rate and review purchased items</li>
-            </ul>
-        </div>
-
-        <div class="dashboard-card">
-            <h2>Shopping Features</h2>
-            <p>Explore and shop with ease:</p>
-            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
-                <li>Browse product catalog</li>
-                <li>Add items to wishlist</li>
-                <li>Compare products</li>
-                <li>Save favorite sellers</li>
-                <li>Get personalized recommendations</li>
-            </ul>
-        </div>
-
-        <div class="dashboard-card">
-            <h2>Account Settings</h2>
-            <p>Manage your personal information and preferences:</p>
-            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
-                <li>Update profile information</li>
-                <li>Change password and security settings</li>
-                <li>Manage shipping addresses</li>
-                <li>Set payment preferences</li>
-                <li>Configure notification settings</li>
-            </ul>
-        </div>
-
-        <div class="dashboard-card">
-            <h2>Quick Actions</h2>
-            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                <button onclick="alert('Browse Products functionality would be implemented here')" style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Browse Products</button>
-                <button onclick="alert('View Orders functionality would be implemented here')" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">My Orders</button>
-                <button onclick="alert('Wishlist functionality would be implemented here')" style="background: #ffc107; color: #333; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Wishlist</button>
-                <button onclick="alert('Settings functionality would be implemented here')" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Settings</button>
+        <div class="section-title">Best Selling Products</div>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Pearl Bracelet">
+                <div class="product-title">Pearl Elegance Bracelet</div>
+                <div class="product-price">Rs.1,199</div>
+                <div class="product-desc">Very popular with a coastal elegance style. Handcrafted, beautiful natural freshwater pearls.</div>
+                <div class="product-actions">
+                    <button class="buy-btn">Buy Now</button>
+                    <button class="cart-btn">Add to cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Gold Necklace">
+                <div class="product-title">Minimalist Gold Necklace</div>
+                <div class="product-price">Rs.2,299</div>
+                <div class="product-desc">This delicate gold necklace features a custom-cut charm, perfect for everyday wear.</div>
+                <div class="product-actions">
+                    <button class="buy-btn">Buy Now</button>
+                    <button class="cart-btn">Add to cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Silver Ring">
+                <div class="product-title">Sterling Silver Ring</div>
+                <div class="product-price">Rs.2,299</div>
+                <div class="product-desc">This sterling silver features a lovely arrangement of small pearls and cubic zirconia, crafted by an award-winning local shop.</div>
+                <div class="product-actions">
+                    <button class="buy-btn">Buy Now</button>
+                    <button class="cart-btn">Add to cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80" alt="Diamond Necklace">
+                <div class="product-title">Diamond Necklace</div>
+                <div class="product-price">Rs.2,999</div>
+                <div class="product-desc">This stunning design is a showstopper with intricately crafted floral details, perfect for special occasions.</div>
+                <div class="product-actions">
+                    <button class="buy-btn">Buy Now</button>
+                    <button class="cart-btn">Add to cart</button>
+                </div>
             </div>
         </div>
-
-        <div class="dashboard-card">
-            <h2>Customer Support</h2>
-            <p>Need help? We're here to assist you:</p>
-            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
-                <li>Contact customer support</li>
-                <li>View FAQ and help articles</li>
-                <li>Submit support tickets</li>
-                <li>Live chat with support team</li>
-                <li>Request product information</li>
-            </ul>
+        <div class="section-title">New arrivals</div>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80" alt="Gaming Mouse">
+                <div class="product-title">X9 Thor Gaming Mouse</div>
+                <div class="product-price">Rs.1,199</div>
+                <div class="product-desc">The X9 Thor is the best gaming mouse ever! 7 programmable macro buttons, 12000 DPI, RGB lighting, and ergonomic design.</div>
+                <div class="product-actions">
+                    <button class="buy-btn">Buy Now</button>
+                    <button class="cart-btn">Add to cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80" alt="Monitor">
+                <div class="product-title">Curved Gaming Monitor</div>
+                <div class="product-price">Rs.15,999</div>
+                <div class="product-desc">Ultra-wide 34" curved display, 165Hz refresh rate, 1ms response time, and immersive experience for every gamer.</div>
+                <div class="product-actions">
+                    <button class="buy-btn">Buy Now</button>
+                    <button class="cart-btn">Add to cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80" alt="Speaker">
+                <div class="product-title">Bluetooth Speaker</div>
+                <div class="product-price">Rs.2,199</div>
+                <div class="product-desc">Bluetooth 5.2 speaker system, 24-hour playback, water-resistant, and deep bass for the perfect party experience.</div>
+                <div class="product-actions">
+                    <button class="buy-btn">Buy Now</button>
+                    <button class="cart-btn">Add to cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Gaming PC">
+                <div class="product-title">RGB Gaming PC</div>
+                <div class="product-price">Rs.35,999</div>
+                <div class="product-desc">Our Phantom X-Gamer CTO is a quick starter with the best RGB lighting for ultimate gaming experience. Perfect for streaming and pro gamers.</div>
+                <div class="product-actions">
+                    <button class="buy-btn">Buy Now</button>
+                    <button class="cart-btn">Add to cart</button>
+                </div>
+            </div>
         </div>
     </main>
-
-    <script src="auth.js"></script>
-    <script>
-        // Protect customer page - only customer role can access
-        if (auth.protectPage('customer')) {
-            // Display user info in header
-            auth.displayUserInfo();
-        }
-    </script>
 </body>
 </html> 
