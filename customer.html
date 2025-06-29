@@ -35,7 +35,7 @@
         <div class="section-title">New arrivals</div>
         <div class="product-grid" id="newArrivals">
             <!-- Products will be loaded here -->
-        </div>
+                </div>
     </main>
 
     <!-- Rating Modal -->
@@ -62,14 +62,14 @@
                         <span class="star" data-rating="3">☆</span>
                         <span class="star" data-rating="4">☆</span>
                         <span class="star" data-rating="5">☆</span>
-                    </div>
+            </div>
                     <p class="rating-text">Click on a star to rate</p>
                 </div>
                 
                 <div class="review-section">
                     <label for="reviewComment">Your Review (Optional):</label>
                     <textarea id="reviewComment" rows="4" placeholder="Share your experience with this product..."></textarea>
-                </div>
+            </div>
                 
                 <div class="rating-actions">
                     <button onclick="submitRating()" class="submit-rating-btn">Submit Rating</button>
@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-    </div>
+                </div>
 
     <script src="auth.js"></script>
     <script>
@@ -115,7 +115,7 @@
             }
 
             container.innerHTML = products.map(product => `
-                <div class="product-card">
+            <div class="product-card">
                     <img src="${product.photoData || product.image || 'https://via.placeholder.com/400x300?text=No+Image'}" 
                          alt="${product.name}" 
                          onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'">
@@ -123,11 +123,11 @@
                     <div class="product-price">$${product.price}</div>
                     <div class="product-desc">${product.description}</div>
                     <div class="product-category">${product.category}</div>
-                    <div class="product-actions">
-                        <button class="buy-btn">Buy Now</button>
-                        <button class="cart-btn">Add to cart</button>
+                <div class="product-actions">
+                    <button class="buy-btn">Buy Now</button>
+                    <button class="cart-btn">Add to cart</button>
                         <button class="rating-btn" onclick="openRatingModal(this.closest('.product-card'))">Rate Product</button>
-                    </div>
+            </div>
                 </div>
             `).join('');
         }
@@ -140,7 +140,7 @@
                     <div class="no-products-message">
                         <h3>No Products Available</h3>
                         <p>Products will appear here once sellers add them to the marketplace.</p>
-                    </div>
+            </div>
                 `;
             });
         }
