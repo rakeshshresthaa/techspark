@@ -24,7 +24,7 @@ body {
     gap: 20px;
 }
 .user-role {
-    background: #007bff;
+    background: #dc3545;
     color: white;
     padding: 6px 12px;
     border-radius: 20px;
@@ -76,7 +76,7 @@ body {
     margin-top: 20px;
 }
 .stat-card {
-    background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+    background: linear-gradient(135deg, #dc3545 0%, #ff7675 100%);
     color: white;
     padding: 20px;
     border-radius: 10px;
@@ -135,7 +135,7 @@ body {
 }
 
 .tab-btn.active {
-    background: #667eea;
+    background: #dc3545;
     color: white;
 }
 
@@ -162,12 +162,12 @@ body {
 }
 
 .action-btn.primary {
-    background: #667eea;
+    background: #dc3545;
     color: white;
 }
 
 .action-btn.primary:hover {
-    background: #5a6fd8;
+    background: #c82333;
     transform: translateY(-1px);
 }
 
@@ -187,7 +187,7 @@ body {
 }
 
 .action-btn.danger:hover {
-    background: #c82333;
+    background: hsl(354, 86%, 57%);
     transform: translateY(-1px);
 }
 
@@ -249,7 +249,7 @@ body {
 }
 
 .product-category {
-    color: #667eea;
+    color: #dc3545;
     font-size: 14px;
     font-weight: 500;
     margin: 5px 0;
@@ -330,7 +330,7 @@ body {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #dc3545;
 }
 
 .form-group textarea {
@@ -366,13 +366,13 @@ body {
 }
 
 .photo-upload-area:hover {
-    border-color: #667eea;
-    background: #f8f9ff;
+    border-color: #dc3545;
+    background: #f8d7da;
 }
 
 .photo-upload-area.drag-over {
-    border-color: #667eea;
-    background: #f0f4ff;
+    border-color: #dc3545;
+    background: #f8d7da;
     transform: scale(1.02);
 }
 
@@ -385,7 +385,7 @@ body {
 
 .upload-icon {
     font-size: 48px;
-    color: #667eea;
+    color: #dc3545;
     margin-bottom: 10px;
 }
 
@@ -429,7 +429,7 @@ body {
 .overall-rating {
     text-align: center;
     padding: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #dc3545 0%, #ff7675 100%);
     color: white;
     border-radius: 15px;
 }
@@ -485,7 +485,7 @@ body {
 
 .bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(90deg, #dc3545 0%, #ff7675 100%);
     border-radius: 4px;
     transition: width 0.3s ease;
 }
@@ -576,7 +576,7 @@ body {
     background: #f8f9fa;
     padding: 15px;
     border-radius: 8px;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid #dc3545;
 }
 
 .no-reviews {
