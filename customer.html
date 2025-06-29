@@ -8,18 +8,18 @@
 </head>
 <body style="background: #f8f9fa;">
     <nav class="navbar">
-        <div class="navbar-logo">
+        <div class="navbar-logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
             <img src="WhatsApp Image 2025-06-29 at 15.57.24_b4ad8934.jpg" alt="ShowSpark Logo" height="36">
             <span style="font-weight:700;font-size:1.2rem;color:#667eea;letter-spacing:1px;">ShowSpark</span>
         </div>
         <div class="navbar-menu">
-            <a href="#">Home</a>
-            <a href="#">Product</a>
-            <a href="#">About us</a>
-            <a href="#">FAQ</a>
+            <a href="index.html">Home</a>
+            <a href="customer.html">Product</a>
+            <a href="aboutus.html">About us</a>
+            <a href="faq.html">FAQ</a>
         </div>
         <div class="navbar-search">
-            <input type="text" placeholder="Search">
+            <input type="text" placeholder="Search" id="searchInput" onkeyup="searchProducts()">
             <button class="logout-btn" id="logoutBtn" style="margin-left:10px;display:none;">Logout</button>
         </div>
     </nav>
@@ -68,6 +68,17 @@
                     <button class="cancel-rating-btn" onclick="closeRatingModal()">Cancel</button>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="customer.html">Products</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+        <div class="footer-copyright">
+            &copy; 2024 ShowSpark. All rights reserved.
         </div>
     </div>
     <script src="auth.js"></script>
