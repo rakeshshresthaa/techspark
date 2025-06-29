@@ -9,8 +9,8 @@
 <body style="background: #f8f9fa;">
     <nav class="navbar">
         <div class="navbar-logo">
-            <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" alt="ShopSpark Logo" height="36">
-            <span style="font-weight:700;font-size:1.2rem;color:#667eea;letter-spacing:1px;">TechSpark</span>
+            <img src="WhatsApp Image 2025-06-29 at 15.57.24_b4ad8934.jpg" alt="ShowSpark Logo" height="36">
+            <span style="font-weight:700;font-size:1.2rem;color:#667eea;letter-spacing:1px;">ShowSpark</span>
         </div>
         <div class="navbar-menu">
             <a href="#">Home</a>
@@ -39,8 +39,37 @@
         <div class="section-title">New arrivals</div>
         <div class="product-grid" id="newArrivals">
             <!-- Products will be loaded here -->
-        </div>
+                </div>
     </main>
+    <div id="ratingModal" class="rating-modal" style="display:none;">
+        <div class="rating-modal-content">
+            <div class="rating-modal-header">
+                <h3>Rate Product: <span id="ratingProductName"></span></h3>
+                <button class="close-btn" onclick="closeRatingModal()">&times;</button>
+            </div>
+            <div class="rating-modal-body">
+                <div class="rating-section">
+                    <label>How would you rate this product?</label>
+                    <div class="star-rating">
+                        <span class="star" data-rating="1">☆</span>
+                        <span class="star" data-rating="2">☆</span>
+                        <span class="star" data-rating="3">☆</span>
+                        <span class="star" data-rating="4">☆</span>
+                        <span class="star" data-rating="5">☆</span>
+                    </div>
+                    <div class="rating-text">Click on a star to rate</div>
+                </div>
+                <div class="review-section">
+                    <label for="reviewComment">Write a review (optional):</label>
+                    <textarea id="reviewComment" placeholder="Share your experience..."></textarea>
+                </div>
+                <div class="rating-actions">
+                    <button class="submit-rating-btn" onclick="submitRating()">Submit Rating</button>
+                    <button class="cancel-rating-btn" onclick="closeRatingModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="auth.js"></script>
     <script src="customer.js"></script>
     <script>
