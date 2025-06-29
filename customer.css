@@ -1,0 +1,253 @@
+/* Rating Button */
+.rating-btn {
+    background: #ffd700;
+    color: #333;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+}
+
+.rating-btn:hover {
+    background: #ffed4e;
+    transform: translateY(-1px);
+}
+
+/* Rating Modal */
+.rating-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.rating-modal-content {
+    background: white;
+    border-radius: 15px;
+    padding: 0;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.rating-modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rating-modal-header h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.rating-modal-body {
+    padding: 30px;
+}
+
+.product-info-rating {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.product-info-rating img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-info-rating h4 {
+    margin: 0 0 5px 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.product-info-rating p {
+    margin: 0;
+    color: #28a745;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.rating-section {
+    margin-bottom: 25px;
+}
+
+.rating-section label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+}
+
+.star-rating {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.star {
+    font-size: 32px;
+    cursor: pointer;
+    color: #ccc;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.star:hover {
+    transform: scale(1.1);
+}
+
+.rating-text {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+    font-style: italic;
+}
+
+.review-section {
+    margin-bottom: 25px;
+}
+
+.review-section label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+}
+
+.review-section textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+    transition: border-color 0.3s ease;
+}
+
+.review-section textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.rating-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.submit-rating-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.submit-rating-btn:hover {
+    background: #218838;
+    transform: translateY(-1px);
+}
+
+.cancel-rating-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.cancel-rating-btn:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+}
+
+/* Responsive Design for Rating Modal */
+@media (max-width: 768px) {
+    .rating-modal-content {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .rating-modal-body {
+        padding: 20px;
+    }
+    
+    .product-info-rating {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .product-info-rating img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .star {
+        font-size: 28px;
+    }
+    
+    .rating-actions {
+        flex-direction: column;
+    }
+    
+    .submit-rating-btn,
+    .cancel-rating-btn {
+        width: 100%;
+    }
+}
