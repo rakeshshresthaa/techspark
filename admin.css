@@ -1,145 +1,318 @@
-/* Minimal Admin Panel CSS */
+/* Modern Admin Panel CSS with Sidebar Layout */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f7f7fa;
+    background: #f8fafc;
     margin: 0;
     min-height: 100vh;
+    color: #334155;
 }
+
 .admin-container {
-    max-width: 900px;
-    margin: 40px auto;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-    padding: 0 0 32px 0;
+    display: flex;
+    min-height: 100vh;
+    background: #f8fafc;
 }
-.admin-header {
-    padding: 32px 32px 0 32px;
-    border-bottom: 1px solid #ececec;
-    background: #fff;
-    border-radius: 10px 10px 0 0;
+
+/* Sidebar Styles */
+.admin-sidebar {
+    width: 280px;
+    background: #ffffff;
+    border-right: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    height: 100vh;
+    z-index: 1000;
+}
+
+.sidebar-header {
+    padding: 24px 20px 20px 20px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.sidebar-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-btn {
     display: flex;
     align-items: center;
-    gap: 18px;
-}
-.admin-header h1 {
-    margin: 0 0 18px 0;
-    font-size: 2rem;
-    color: #222;
-    font-weight: 700;
-}
-.admin-nav {
-    display: flex;
     gap: 12px;
-    margin-bottom: 0;
-}
-.tab-btn {
-    background: #f7f7fa;
-    border: 1px solid #ececec;
-    border-radius: 6px 6px 0 0;
-    padding: 10px 22px;
-    font-size: 1rem;
-    color: #444;
-    cursor: pointer;
-    outline: none;
-    transition: background 0.2s, color 0.2s;
+    width: 100%;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: #64748b;
+    font-size: 0.95rem;
     font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
 }
-.tab-btn.active {
-    background: #fff;
-    color: #a70000;
-    border-bottom: 2px solid #a70000;
-    z-index: 2;
+
+.sidebar-btn:hover {
+    background: #f1f5f9;
+    color: #475569;
 }
+
+.sidebar-btn.active {
+    background: #fef2f2;
+    color: #dc2626;
+    border-left: 3px solid #dc2626;
+}
+
+.btn-icon {
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-footer {
+    padding: 16px 12px 24px 12px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 16px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    color: #dc2626;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.logout-btn:hover {
+    background: #fee2e2;
+    color: #b91c1c;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(220, 38, 38, 0.1);
+}
+
+/* Main Content Styles */
 .admin-main {
+    flex: 1;
+    margin-left: 280px;
     padding: 32px;
+    background: #f8fafc;
+    min-height: 100vh;
 }
+
 .tab-section {
     display: none;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 .tab-section.active {
     display: block;
 }
+
+.tab-section h2 {
+    margin: 0 0 24px 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Table Styles */
 .admin-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 18px;
-    background: #fff;
+    background: #ffffff;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
-.admin-table th, .admin-table td {
-    padding: 12px 14px;
+
+.admin-table th,
+.admin-table td {
+    padding: 16px 20px;
     text-align: left;
-    border-bottom: 1px solid #f0f0f0;
-    font-size: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.95rem;
 }
+
 .admin-table th {
-    background: #fafbfc;
-    color: #a70000;
+    background: #f8fafc;
+    color: #475569;
     font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
+
 .admin-table tr:last-child td {
     border-bottom: none;
 }
-.approve-btn, .delete-btn {
-    padding: 6px 16px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-right: 6px;
-    transition: background 0.2s, color 0.2s;
+
+.admin-table tr:hover {
+    background: #f8fafc;
 }
-.approve-btn {
-    background: #eaf7ea;
-    color: #218838;
-    border: 1px solid #b6e2b6;
-}
-.approve-btn:hover {
-    background: #d4f5d4;
-    color: #166c16;
-}
+
+/* Button Styles */
+.approve-btn,
 .delete-btn {
-    background: #fff0f0;
-    color: #a70000;
-    border: 1px solid #ffd6d6;
-}
-.delete-btn:hover {
-    background: #ffeaea;
-    color: #7a0000;
-}
-.logout-btn {
-    margin-left: auto;
-    background: #fff0f0;
-    color: #a70000;
-    border: 1px solid #ffd6d6;
+    padding: 8px 16px;
+    border: none;
     border-radius: 6px;
-    padding: 8px 18px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    margin-right: 8px;
+    transition: all 0.2s ease;
 }
-.logout-btn:hover {
-    background: #ffeaea;
-    color: #7a0000;
+
+.approve-btn {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
 }
-@media (max-width: 700px) {
-    .admin-container, .admin-main, .admin-header {
-        padding: 12px !important;
+
+.approve-btn:hover {
+    background: #bbf7d0;
+    color: #14532d;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(34, 197, 94, 0.1);
+}
+
+.delete-btn {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.delete-btn:hover {
+    background: #fee2e2;
+    color: #b91c1c;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(220, 38, 38, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .admin-sidebar {
+        width: 240px;
     }
-    .admin-table th, .admin-table td {
-        padding: 8px 6px;
-        font-size: 0.95rem;
+    
+    .admin-main {
+        margin-left: 240px;
+        padding: 24px;
     }
-    .admin-header h1 {
+    
+    .sidebar-header h1 {
         font-size: 1.3rem;
     }
-    .tab-btn {
-        padding: 8px 10px;
-        font-size: 0.95rem;
+    
+    .sidebar-btn {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-container {
+        flex-direction: column;
+    }
+    
+    .admin-sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .admin-main {
+        margin-left: 0;
+        padding: 20px;
+    }
+    
+    .sidebar-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 12px;
+        gap: 8px;
+    }
+    
+    .sidebar-btn {
+        white-space: nowrap;
+        min-width: fit-content;
+        padding: 10px 16px;
+    }
+    
+    .sidebar-footer {
+        padding: 12px;
+    }
+    
+    .logout-btn {
+        width: auto;
+        margin: 0 auto;
+        display: inline-flex;
+    }
+    
+    .tab-section {
+        padding: 20px;
+    }
+    
+    .admin-table th,
+    .admin-table td {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-main {
+        padding: 16px;
+    }
+    
+    .tab-section {
+        padding: 16px;
+    }
+    
+    .admin-table th,
+    .admin-table td {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .approve-btn,
+    .delete-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .sidebar-header h1 {
+        font-size: 1.2rem;
     }
 }
