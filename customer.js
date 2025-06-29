@@ -208,45 +208,19 @@ window.onclick = function(event) {
     }
 }
 
-let allProductsCache = [];
-
-// Listen for search input
-window.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.querySelector('.navbar-search input[type="text"]');
-    if (searchInput) {
-        let debounceTimeout;
-        searchInput.addEventListener('input', function() {
-            clearTimeout(debounceTimeout);
-            debounceTimeout = setTimeout(() => {
-                filterProductsBySearch(this.value);
-            }, 200);
-        });
-    }
-});
-
-// Filter and display products by search term
-function filterProductsBySearch(searchTerm) {
-    const term = searchTerm.trim().toLowerCase();
-    if (!allProductsCache.length) {
-        allProductsCache = JSON.parse(localStorage.getItem('products') || '[]');
-    }
-    let filtered = allProductsCache;
-    if (term) {
-        filtered = allProductsCache.filter(product =>
-            (product.name && product.name.toLowerCase().includes(term)) ||
-            (product.description && product.description.toLowerCase().includes(term)) ||
-            (product.category && product.category.toLowerCase().includes(term))
-        );
-    }
-    displayProducts('allProducts', filtered);
-    // Optionally, update other grids as well (popular, best selling, new arrivals)
-    // If you want to filter those too, repeat displayProducts for each with filtered/sorted arrays
-}
-
-// Patch loadAllProducts to cache all products
-const origLoadAllProducts = window.loadAllProducts;
-window.loadAllProducts = function() {
-    const products = JSON.parse(localStorage.getItem('products') || '[]');
-    allProductsCache = products;
-    if (typeof origLoadAllProducts === 'function') origLoadAllProducts();
-}; 
+// Search functionality
+function searchProducts() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const productCards = document.querySelectorAll('.product-card');
+    
+    productCards.forEach(card => {
+        const title = card.querySelector('.product-title').textContent.toLowerCase();
+        const description = card.querySelector('.product-description').textContent.toLowerCase();
+        
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+} 
