@@ -1,0 +1,125 @@
+/* Minimal Admin Panel CSS */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f7f7fa;
+    margin: 0;
+    min-height: 100vh;
+}
+.admin-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    padding: 0 0 32px 0;
+}
+.admin-header {
+    padding: 32px 32px 0 32px;
+    border-bottom: 1px solid #ececec;
+    background: #fff;
+    border-radius: 10px 10px 0 0;
+}
+.admin-header h1 {
+    margin: 0 0 18px 0;
+    font-size: 2rem;
+    color: #222;
+    font-weight: 700;
+}
+.admin-nav {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 0;
+}
+.tab-btn {
+    background: #f7f7fa;
+    border: 1px solid #ececec;
+    border-radius: 6px 6px 0 0;
+    padding: 10px 22px;
+    font-size: 1rem;
+    color: #444;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.2s, color 0.2s;
+    font-weight: 500;
+}
+.tab-btn.active {
+    background: #fff;
+    color: #a70000;
+    border-bottom: 2px solid #a70000;
+    z-index: 2;
+}
+.admin-main {
+    padding: 32px;
+}
+.tab-section {
+    display: none;
+}
+.tab-section.active {
+    display: block;
+}
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+.admin-table th, .admin-table td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 1rem;
+}
+.admin-table th {
+    background: #fafbfc;
+    color: #a70000;
+    font-weight: 600;
+}
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+.approve-btn, .delete-btn {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 6px;
+    transition: background 0.2s, color 0.2s;
+}
+.approve-btn {
+    background: #eaf7ea;
+    color: #218838;
+    border: 1px solid #b6e2b6;
+}
+.approve-btn:hover {
+    background: #d4f5d4;
+    color: #166c16;
+}
+.delete-btn {
+    background: #fff0f0;
+    color: #a70000;
+    border: 1px solid #ffd6d6;
+}
+.delete-btn:hover {
+    background: #ffeaea;
+    color: #7a0000;
+}
+@media (max-width: 700px) {
+    .admin-container, .admin-main, .admin-header {
+        padding: 12px !important;
+    }
+    .admin-table th, .admin-table td {
+        padding: 8px 6px;
+        font-size: 0.95rem;
+    }
+    .admin-header h1 {
+        font-size: 1.3rem;
+    }
+    .tab-btn {
+        padding: 8px 10px;
+        font-size: 0.95rem;
+    }
+}

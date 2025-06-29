@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #fff5f5;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -20,130 +20,146 @@ body {
 }
 
 .login-card {
-    background: white;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px 24px;
+    box-shadow: 0 4px 24px rgba(200, 0, 0, 0.07);
+    border: 1px solid #ffeaea;
 }
 
 .login-header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
 }
 
 .login-header h1 {
-    color: #333;
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 8px;
+    color: #a70000;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
 }
 
 .login-header p {
-    color: #666;
-    font-size: 16px;
+    color: #b23a48;
+    font-size: 15px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    color: #333;
+    margin-bottom: 6px;
+    color: #a70000;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #e1e5e9;
-    border-radius: 10px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    background: #f8f9fa;
+    padding: 10px 14px;
+    border: 1.5px solid #ffd6d6;
+    border-radius: 7px;
+    font-size: 15px;
+    background: #fff8f8;
+    transition: border 0.2s;
 }
 
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #667eea;
-    background: white;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-.form-group select {
-    cursor: pointer;
+    border-color: #a70000;
+    background: #fff;
+    box-shadow: 0 0 0 2px #ffeaea;
 }
 
 .login-btn {
     width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    padding: 12px;
+    background: #a70000;
+    color: #fff;
     border: none;
-    border-radius: 10px;
+    border-radius: 7px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 20px;
+    transition: background 0.2s;
+    margin-bottom: 12px;
 }
 
 .login-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    background: #7a0000;
 }
 
 .login-btn:active {
-    transform: translateY(0);
+    background: #a70000;
 }
 
 .message {
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 16px;
     text-align: center;
     font-weight: 500;
     display: none;
 }
 
 .message.success {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background: #ffeaea;
+    color: #a70000;
+    border: 1px solid #ffd6d6;
     display: block;
 }
 
 .message.error {
-    background: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background: #fff0f0;
+    color: #a70000;
+    border: 1px solid #ffd6d6;
     display: block;
 }
 
 .demo-accounts {
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 20px;
+    background: #fff8f8;
+    border-radius: 7px;
+    padding: 14px;
+    margin-top: 16px;
 }
 
 .demo-accounts h3 {
-    color: #333;
-    font-size: 16px;
-    margin-bottom: 12px;
+    color: #a70000;
+    font-size: 15px;
+    margin-bottom: 8px;
     text-align: center;
 }
 
 .account-info p {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 6px;
+    color: #b23a48;
+    font-size: 13px;
+    margin-bottom: 4px;
     text-align: center;
+}
+
+/* Minimal link styles for login/register */
+.container a, .container a:visited {
+    color: #a70000;
+    text-decoration: none;
+    font-weight: 500;
+    transition: text-decoration 0.2s;
+}
+.container a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .login-card {
+        padding: 18px 4px;
+    }
+    .container {
+        padding: 4px;
+    }
 }
 
 /* Dashboard Styles */
