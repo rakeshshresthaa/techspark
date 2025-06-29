@@ -21,7 +21,7 @@ function setProducts(products) {
 }
 
 // --- Tab Switching ---
-const tabBtns = document.querySelectorAll('.tab-btn');
+const tabBtns = document.querySelectorAll('.sidebar-btn');
 const tabSections = document.querySelectorAll('.tab-section');
 tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {

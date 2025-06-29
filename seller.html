@@ -20,6 +20,7 @@
             <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
             <button class="tab-btn" onclick="showTab('products')">My Products</button>
             <button class="tab-btn" onclick="showTab('add-product')">Add Product</button>
+            <button class="tab-btn" onclick="showTab('ratings')">Ratings & Reviews</button>
             <button class="tab-btn" onclick="showTab('orders')">Orders</button>
         </div>
 
@@ -192,6 +193,84 @@
                 </div>
             </div>
         </div>
+
+        <!-- Ratings Tab -->
+        <div id="ratings" class="tab-content">
+            <div class="dashboard-card">
+                <h2>Ratings & Reviews</h2>
+                <div class="ratings-overview">
+                    <div class="rating-stats">
+                        <div class="overall-rating">
+                            <div class="rating-number" id="averageRating">0.0</div>
+                            <div class="rating-stars" id="averageStars">★★★★★</div>
+                            <div class="rating-label">Overall Rating</div>
+                        </div>
+                        <div class="rating-breakdown">
+                            <div class="rating-bar">
+                                <span>5★</span>
+                                <div class="bar-container">
+                                    <div class="bar-fill" id="fiveStarBar" style="width: 0%"></div>
+                                </div>
+                                <span id="fiveStarCount">0</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span>4★</span>
+                                <div class="bar-container">
+                                    <div class="bar-fill" id="fourStarBar" style="width: 0%"></div>
+                                </div>
+                                <span id="fourStarCount">0</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span>3★</span>
+                                <div class="bar-container">
+                                    <div class="bar-fill" id="threeStarBar" style="width: 0%"></div>
+                                </div>
+                                <span id="threeStarCount">0</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span>2★</span>
+                                <div class="bar-container">
+                                    <div class="bar-fill" id="twoStarBar" style="width: 0%"></div>
+                                </div>
+                                <span id="twoStarCount">0</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span>1★</span>
+                                <div class="bar-container">
+                                    <div class="bar-fill" id="oneStarBar" style="width: 0%"></div>
+                                </div>
+                                <span id="oneStarCount">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h2>Recent Reviews</h2>
+                <div class="reviews-filter">
+                    <select id="reviewFilter" onchange="filterReviews()">
+                        <option value="all">All Reviews</option>
+                        <option value="5">5 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="2">2 Stars</option>
+                        <option value="1">1 Star</option>
+                    </select>
+                </div>
+                
+                <div id="reviewsList" class="reviews-list">
+                    <!-- Reviews will be loaded here -->
+                </div>
+                
+                <div id="noReviews" class="no-reviews" style="display: none;">
+                    <div class="empty-state">
+                        <h3>No Reviews Yet</h3>
+                        <p>Customer reviews will appear here once they start rating your products.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="auth.js"></script>
@@ -224,6 +303,11 @@
             // Load products if switching to products tab
             if (tabName === 'products') {
                 loadSellerProducts();
+            }
+            
+            // Load ratings if switching to ratings tab
+            if (tabName === 'ratings') {
+                loadSellerRatings();
             }
         }
 
@@ -410,6 +494,133 @@
                 loadSellerProducts();
                 alert('Product deleted successfully!');
             }
+        }
+
+        // Load seller's ratings and reviews
+        function loadSellerRatings() {
+            const currentUser = auth.getCurrentUser();
+            if (!currentUser) return;
+
+            const ratings = JSON.parse(localStorage.getItem('ratings') || '[]');
+            const sellerRatings = ratings.filter(rating => rating.sellerId === currentUser.id);
+            
+            if (sellerRatings.length === 0) {
+                showNoReviews();
+                return;
+            }
+
+            // Calculate rating statistics
+            const totalRatings = sellerRatings.length;
+            const averageRating = sellerRatings.reduce((sum, rating) => sum + rating.rating, 0) / totalRatings;
+            
+            // Count ratings by star level
+            const ratingCounts = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
+            sellerRatings.forEach(rating => {
+                ratingCounts[rating.rating]++;
+            });
+
+            // Update rating display
+            updateRatingDisplay(averageRating, ratingCounts, totalRatings);
+            
+            // Display reviews
+            displayReviews(sellerRatings);
+        }
+
+        function updateRatingDisplay(averageRating, ratingCounts, totalRatings) {
+            // Update average rating
+            document.getElementById('averageRating').textContent = averageRating.toFixed(1);
+            document.getElementById('averageStars').innerHTML = getStarRating(averageRating);
+            
+            // Update rating breakdown
+            for (let i = 1; i <= 5; i++) {
+                const count = ratingCounts[i] || 0;
+                const percentage = totalRatings > 0 ? (count / totalRatings) * 100 : 0;
+                
+                document.getElementById(`${i === 1 ? 'one' : i === 2 ? 'two' : i === 3 ? 'three' : i === 4 ? 'four' : 'five'}StarCount`).textContent = count;
+                document.getElementById(`${i === 1 ? 'one' : i === 2 ? 'two' : i === 3 ? 'three' : i === 4 ? 'four' : 'five'}StarBar`).style.width = percentage + '%';
+            }
+        }
+
+        function getStarRating(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            
+            return '★'.repeat(fullStars) + (hasHalfStar ? '☆' : '') + '☆'.repeat(emptyStars);
+        }
+
+        function displayReviews(reviews) {
+            const reviewsList = document.getElementById('reviewsList');
+            const noReviews = document.getElementById('noReviews');
+            
+            if (reviews.length === 0) {
+                reviewsList.style.display = 'none';
+                noReviews.style.display = 'block';
+                return;
+            }
+
+            reviewsList.style.display = 'block';
+            noReviews.style.display = 'none';
+            
+            // Sort reviews by date (newest first)
+            reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            reviewsList.innerHTML = reviews.map(review => `
+                <div class="review-card" data-rating="${review.rating}">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-name">${review.customerName}</div>
+                            <div class="review-date">${formatDate(review.date)}</div>
+                        </div>
+                        <div class="review-rating">
+                            <span class="stars">${getStarRating(review.rating)}</span>
+                            <span class="rating-number">${review.rating}/5</span>
+                        </div>
+                    </div>
+                    <div class="review-product">
+                        <strong>Product:</strong> ${review.productName}
+                    </div>
+                    <div class="review-comment">
+                        ${review.comment || 'No comment provided'}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function showNoReviews() {
+            document.getElementById('averageRating').textContent = '0.0';
+            document.getElementById('averageStars').innerHTML = '☆☆☆☆☆';
+            
+            // Reset all rating bars
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`${i === 1 ? 'one' : i === 2 ? 'two' : i === 3 ? 'three' : i === 4 ? 'four' : 'five'}StarCount`).textContent = '0';
+                document.getElementById(`${i === 1 ? 'one' : i === 2 ? 'two' : i === 3 ? 'three' : i === 4 ? 'four' : 'five'}StarBar`).style.width = '0%';
+            }
+            
+            document.getElementById('reviewsList').style.display = 'none';
+            document.getElementById('noReviews').style.display = 'block';
+        }
+
+        function filterReviews() {
+            const filterValue = document.getElementById('reviewFilter').value;
+            const reviewCards = document.querySelectorAll('.review-card');
+            
+            reviewCards.forEach(card => {
+                if (filterValue === 'all' || card.dataset.rating === filterValue) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         }
     </script>
 </body>
