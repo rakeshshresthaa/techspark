@@ -1,0 +1,42 @@
+/* Customer-specific styles for customer.html */
+
+body {
+    background: linear-gradient(120deg, #f8f9fa 60%, #ffeaea 100%);
+}
+
+.product-card {
+    border: 2px solid #ffeaea !important;
+    box-shadow: 0 4px 18px rgba(167,0,0,0.07) !important;
+}
+
+.section-title {
+    position: relative;
+    z-index: 1;
+}
+
+/* Highlight Best Selling Products section */
+.section-title:contains('Best Selling Products')::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #a70000;
+    border-radius: 2px;
+    margin: 8px auto 0 auto;
+}
+
+/* Subtle hover effect for product cards */
+.product-card:hover {
+    border-color: #a70000 !important;
+    box-shadow: 0 8px 32px rgba(167,0,0,0.13) !important;
+    transform: translateY(-4px) scale(1.025) !important;
+}
+
+.purchase-count {
+    font-size: 0.92rem;
+    color: #218838;
+    margin-bottom: 4px;
+    text-align: center;
+    font-weight: 500;
+    min-height: 18px;
+}
