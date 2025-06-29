@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dashboard">
+    <header class="dashboard-header">
+        <h1 class="dashboard-title">Customer Dashboard</h1>
+        <div id="userInfo" class="user-info">
+            <!-- User info will be populated by JavaScript -->
+        </div>
+    </header>
+
+    <main class="dashboard-content">
+        <div class="dashboard-card">
+            <h2>My Account</h2>
+            <p>Welcome to your Customer Dashboard. Browse products, track your orders, and manage your account.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Orders Placed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Pending Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$450</div>
+                    <div class="stat-label">Total Spent</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5★</div>
+                    <div class="stat-label">Reviews Given</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Recent Orders</h2>
+            <p>Track your recent purchases and order status:</p>
+            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
+                <li>View order history and details</li>
+                <li>Track shipping and delivery status</li>
+                <li>Download invoices and receipts</li>
+                <li>Request returns or exchanges</li>
+                <li>Rate and review purchased items</li>
+            </ul>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Shopping Features</h2>
+            <p>Explore and shop with ease:</p>
+            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
+                <li>Browse product catalog</li>
+                <li>Add items to wishlist</li>
+                <li>Compare products</li>
+                <li>Save favorite sellers</li>
+                <li>Get personalized recommendations</li>
+            </ul>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Account Settings</h2>
+            <p>Manage your personal information and preferences:</p>
+            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
+                <li>Update profile information</li>
+                <li>Change password and security settings</li>
+                <li>Manage shipping addresses</li>
+                <li>Set payment preferences</li>
+                <li>Configure notification settings</li>
+            </ul>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Quick Actions</h2>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <button onclick="alert('Browse Products functionality would be implemented here')" style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Browse Products</button>
+                <button onclick="alert('View Orders functionality would be implemented here')" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">My Orders</button>
+                <button onclick="alert('Wishlist functionality would be implemented here')" style="background: #ffc107; color: #333; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Wishlist</button>
+                <button onclick="alert('Settings functionality would be implemented here')" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Settings</button>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Customer Support</h2>
+            <p>Need help? We're here to assist you:</p>
+            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
+                <li>Contact customer support</li>
+                <li>View FAQ and help articles</li>
+                <li>Submit support tickets</li>
+                <li>Live chat with support team</li>
+                <li>Request product information</li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script>
+        // Protect customer page - only customer role can access
+        if (auth.protectPage('customer')) {
+            // Display user info in header
+            auth.displayUserInfo();
+        }
+    </script>
+</body>
+</html> 

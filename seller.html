@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dashboard">
+    <header class="dashboard-header">
+        <h1 class="dashboard-title">Seller Dashboard</h1>
+        <div id="userInfo" class="user-info">
+            <!-- User info will be populated by JavaScript -->
+        </div>
+    </header>
+
+    <main class="dashboard-content">
+        <div class="dashboard-card">
+            <h2>Sales Overview</h2>
+            <p>Welcome to your Seller Dashboard. Manage your products, track sales, and grow your business.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">24</div>
+                    <div class="stat-label">Products Listed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">156</div>
+                    <div class="stat-label">Total Sales</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$2,450</div>
+                    <div class="stat-label">Revenue This Month</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.8★</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Product Management</h2>
+            <p>Manage your product catalog and inventory:</p>
+            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
+                <li>Add new products to your catalog</li>
+                <li>Update product information and pricing</li>
+                <li>Manage inventory levels</li>
+                <li>Track product performance</li>
+                <li>Handle product reviews and ratings</li>
+            </ul>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Order Management</h2>
+            <p>Process and fulfill customer orders:</p>
+            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
+                <li>View pending orders</li>
+                <li>Update order status</li>
+                <li>Generate shipping labels</li>
+                <li>Track order fulfillment</li>
+                <li>Handle returns and refunds</li>
+            </ul>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Analytics & Reports</h2>
+            <p>Track your business performance:</p>
+            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
+                <li>Sales analytics and trends</li>
+                <li>Customer behavior insights</li>
+                <li>Product performance reports</li>
+                <li>Revenue and profit analysis</li>
+                <li>Marketing campaign effectiveness</li>
+            </ul>
+        </div>
+
+        <div class="dashboard-card">
+            <h2>Quick Actions</h2>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <button onclick="alert('Add Product functionality would be implemented here')" style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Add Product</button>
+                <button onclick="alert('View Orders functionality would be implemented here')" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">View Orders</button>
+                <button onclick="alert('Analytics functionality would be implemented here')" style="background: #ffc107; color: #333; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Analytics</button>
+                <button onclick="alert('Settings functionality would be implemented here')" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Settings</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script>
+        // Protect seller page - only seller role can access
+        if (auth.protectPage('seller')) {
+            // Display user info in header
+            auth.displayUserInfo();
+        }
+    </script>
+</body>
+</html> 
