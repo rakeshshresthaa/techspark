@@ -3,84 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Admin Panel</title>
     <link rel="stylesheet" href="admin.css">
 </head>
-<body class="dashboard">
-    <header class="dashboard-header">
-        <h1 class="dashboard-title">Admin Dashboard</h1>
-        <div id="userInfo" class="user-info">
-            <!-- User info will be populated by JavaScript -->
-        </div>
-    </header>
-
-    <main class="dashboard-content">
-        <div class="dashboard-card">
-            <h2>System Overview</h2>
-            <p>Welcome to the Admin Dashboard. You have full access to manage the entire system, including users, sellers, and customer data.</p>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">Total Users</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">1</div>
-                    <div class="stat-label">Sellers</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">1</div>
-                    <div class="stat-label">Customers</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">System Uptime</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="dashboard-card">
-            <h2>User Management</h2>
-            <p>As an admin, you can:</p>
-            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
-                <li>View all registered users</li>
-                <li>Create new user accounts</li>
-                <li>Modify user roles and permissions</li>
-                <li>Delete user accounts</li>
-                <li>Monitor user activity</li>
-            </ul>
-        </div>
-
-        <div class="dashboard-card">
-            <h2>System Settings</h2>
-            <p>Manage system-wide configurations and settings:</p>
-            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
-                <li>Security settings</li>
-                <li>Email notifications</li>
-                <li>Backup and restore</li>
-                <li>System logs</li>
-                <li>Performance monitoring</li>
-            </ul>
-        </div>
-
-        <div class="dashboard-card">
-            <h2>Quick Actions</h2>
-            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                <button onclick="alert('Add User functionality would be implemented here')" style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Add New User</button>
-                <button onclick="alert('View Reports functionality would be implemented here')" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">View Reports</button>
-                <button onclick="alert('System Backup functionality would be implemented here')" style="background: #ffc107; color: #333; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">System Backup</button>
-                <button onclick="alert('Settings functionality would be implemented here')" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Settings</button>
-            </div>
-        </div>
-    </main>
-
-    <script src="auth.js"></script>
-    <script>
-        // Protect admin page - only admin role can access
-        if (auth.protectPage('admin')) {
-            // Display user info in header
-            auth.displayUserInfo();
-        }
-    </script>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>Admin Panel</h1>
+            <nav class="admin-nav">
+                <button class="tab-btn active" data-tab="pending-sellers">Pending Sellers</button>
+                <button class="tab-btn" data-tab="pending-products">Pending Products</button>
+                <button class="tab-btn" data-tab="published-products">Published Products</button>
+                <button class="tab-btn" data-tab="seller-list">Seller List</button>
+            </nav>
+        </header>
+        <main class="admin-main">
+            <section id="pending-sellers" class="tab-section active">
+                <h2>Pending Sellers <span id="pending-sellers-count"></span></h2>
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>Email</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="pending-sellers-body"></tbody>
+                </table>
+            </section>
+            <section id="pending-products" class="tab-section">
+                <h2>Pending Products <span id="pending-products-count"></span></h2>
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>Name</th><th>Seller</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="pending-products-body"></tbody>
+                </table>
+            </section>
+            <section id="published-products" class="tab-section">
+                <h2>Published Products <span id="published-products-count"></span></h2>
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>Name</th><th>Seller</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="published-products-body"></tbody>
+                </table>
+            </section>
+            <section id="seller-list" class="tab-section">
+                <h2>Seller List <span id="seller-list-count"></span></h2>
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>Email</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="seller-list-body"></tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <script src="admin.js"></script>
 </body>
 </html> 
