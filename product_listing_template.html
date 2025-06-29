@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listing Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .product-listing {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .product-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-category {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .product-content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: "✦";
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            background: #f8f9fa;
+            margin-bottom: 8px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            font-weight: 500;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .benefit-card h4 {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .file-details {
+            background: #e8f4fd;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .file-details h3 {
+            color: #2980b9;
+            margin-bottom: 10px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #f5576c;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .template-form {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .product-title {
+                font-size: 2rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .trust-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="template-form">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #2c3e50;">Product Listing Generator</h2>
+            <form id="listingForm">
+                <div class="form-group">
+                    <label for="productName">Product Name:</label>
+                    <input type="text" id="productName" placeholder="Enter your product name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" required>
+                        <option value="">Select a category</option>
+                        <option value="Educational Material">Educational Material</option>
+                        <option value="Handmade Item">Handmade Item</option>
+                        <option value="Digital Product">Digital Product</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Books & Media">Books & Media</option>
+                        <option value="Home & Garden">Home & Garden</option>
+                        <option value="Fashion & Accessories">Fashion & Accessories</option>
+                        <option value="Health & Beauty">Health & Beauty</option>
+                        <option value="Sports & Outdoors">Sports & Outdoors</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="features">Main Features (one per line):</label>
+                    <textarea id="features" placeholder="Enter key features of your product&#10;Example:&#10;- Professional formatting&#10;- Editable templates&#10;- Ready to use"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="targetAudience">Target Audience:</label>
+                    <input type="text" id="targetAudience" placeholder="e.g., Students, Parents, Tech users, etc." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="benefits">Benefits (one per line):</label>
+                    <textarea id="benefits" placeholder="What problems does it solve?&#10;Example:&#10;- Saves time and effort&#10;- Professional quality&#10;- Instant access"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fileFormat">File Format or Physical Details:</label>
+                    <input type="text" id="fileFormat" placeholder="e.g., PDF, DOCX, Size, Color, Weight, etc." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="callToAction">Call to Action:</label>
+                    <input type="text" id="callToAction" placeholder="e.g., Order now, Limited time offer, Instant download available" required>
+                </div>
+                
+                <button type="submit" class="generate-btn">Generate Product Listing</button>
+            </form>
+        </div>
+
+        <div class="product-listing" id="productListing" style="display: none;">
+            <div class="product-header">
+                <h1 class="product-title" id="listingTitle">Product Name</h1>
+                <p class="product-category" id="listingCategory">Category</p>
+            </div>
+            
+            <div class="product-content">
+                <div class="section">
+                    <h3 class="section-title">✨ Main Features</h3>
+                    <ul class="feature-list" id="listingFeatures">
+                        <!-- Features will be populated here -->
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <h3 class="section-title">🎯 Target Audience</h3>
+                    <p id="listingAudience">Target audience will appear here</p>
+                </div>
+                
+                <div class="section">
+                    <h3 class="section-title">💡 Key Benefits</h3>
+                    <div class="benefits-grid" id="listingBenefits">
+                        <!-- Benefits will be populated here -->
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h3 class="section-title">📋 Product Details</h3>
+                    <div class="file-details">
+                        <h3>Format & Specifications</h3>
+                        <p id="listingFormat">File format details will appear here</p>
+                    </div>
+                </div>
+                
+                <div class="cta-section">
+                    <h2 style="margin-bottom: 15px;">Ready to Get Started?</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 20px;">Don't miss out on this amazing opportunity!</p>
+                    <a href="#" class="cta-button" id="listingCTA">Call to Action</a>
+                    
+                    <div class="trust-badges">
+                        <span class="badge">✓ Instant Download</span>
+                        <span class="badge">✓ Secure Payment</span>
+                        <span class="badge">✓ 24/7 Support</span>
+                        <span class="badge">✓ Money Back Guarantee</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('listingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const productName = document.getElementById('productName').value;
+            const category = document.getElementById('category').value;
+            const features = document.getElementById('features').value.split('\n').filter(f => f.trim());
+            const targetAudience = document.getElementById('targetAudience').value;
+            const benefits = document.getElementById('benefits').value.split('\n').filter(b => b.trim());
+            const fileFormat = document.getElementById('fileFormat').value;
+            const callToAction = document.getElementById('callToAction').value;
+            
+            // Update the listing
+            document.getElementById('listingTitle').textContent = productName;
+            document.getElementById('listingCategory').textContent = category;
+            document.getElementById('listingAudience').textContent = targetAudience;
+            document.getElementById('listingFormat').textContent = fileFormat;
+            document.getElementById('listingCTA').textContent = callToAction;
+            
+            // Update features
+            const featuresList = document.getElementById('listingFeatures');
+            featuresList.innerHTML = '';
+            features.forEach(feature => {
+                if (feature.trim()) {
+                    const li = document.createElement('li');
+                    li.textContent = feature.trim();
+                    featuresList.appendChild(li);
+                }
+            });
+            
+            // Update benefits
+            const benefitsGrid = document.getElementById('listingBenefits');
+            benefitsGrid.innerHTML = '';
+            benefits.forEach(benefit => {
+                if (benefit.trim()) {
+                    const card = document.createElement('div');
+                    card.className = 'benefit-card';
+                    card.innerHTML = `<h4>${benefit.trim()}</h4>`;
+                    benefitsGrid.appendChild(card);
+                }
+            });
+            
+            // Show the listing
+            document.getElementById('productListing').style.display = 'block';
+            
+            // Scroll to the listing
+            document.getElementById('productListing').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        });
+    </script>
+</body>
+</html> 

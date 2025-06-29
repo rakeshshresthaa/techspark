@@ -15,73 +15,181 @@
     </header>
 
     <main class="dashboard-content">
-        <div class="dashboard-card">
-            <h2>Sales Overview</h2>
-            <p>Welcome to your Seller Dashboard. Manage your products, track sales, and grow your business.</p>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">24</div>
-                    <div class="stat-label">Products Listed</div>
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+            <button class="tab-btn" onclick="showTab('products')">My Products</button>
+            <button class="tab-btn" onclick="showTab('add-product')">Add Product</button>
+            <button class="tab-btn" onclick="showTab('orders')">Orders</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <div class="dashboard-card">
+                <h2>Sales Overview</h2>
+                <p>Welcome to your Seller Dashboard. Manage your products, track sales, and grow your business.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalProducts">0</div>
+                        <div class="stat-label">Products Listed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">156</div>
+                        <div class="stat-label">Total Sales</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$2,450</div>
+                        <div class="stat-label">Revenue This Month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4.8★</div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">156</div>
-                    <div class="stat-label">Total Sales</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">$2,450</div>
-                    <div class="stat-label">Revenue This Month</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">4.8★</div>
-                    <div class="stat-label">Average Rating</div>
+            </div>
+
+            <div class="dashboard-card">
+                <h2>Quick Actions</h2>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <button onclick="showTab('add-product')" class="action-btn primary">Add New Product</button>
+                    <button onclick="showTab('products')" class="action-btn secondary">View My Products</button>
+                    <button onclick="showTab('orders')" class="action-btn secondary">View Orders</button>
+                    <button onclick="alert('Analytics functionality would be implemented here')" class="action-btn secondary">Analytics</button>
                 </div>
             </div>
         </div>
 
-        <div class="dashboard-card">
-            <h2>Product Management</h2>
-            <p>Manage your product catalog and inventory:</p>
-            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
-                <li>Add new products to your catalog</li>
-                <li>Update product information and pricing</li>
-                <li>Manage inventory levels</li>
-                <li>Track product performance</li>
-                <li>Handle product reviews and ratings</li>
-            </ul>
+        <!-- Products Tab -->
+        <div id="products" class="tab-content">
+            <div class="dashboard-card">
+                <h2>My Products</h2>
+                <div class="products-header">
+                    <p>Manage your product catalog and inventory</p>
+                    <button onclick="showTab('add-product')" class="action-btn primary">Add New Product</button>
+                </div>
+                
+                <div id="productsList" class="products-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+                
+                <div id="noProducts" class="no-products" style="display: none;">
+                    <div class="empty-state">
+                        <h3>No Products Yet</h3>
+                        <p>Start selling by adding your first product!</p>
+                        <button onclick="showTab('add-product')" class="action-btn primary">Add Your First Product</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="dashboard-card">
-            <h2>Order Management</h2>
-            <p>Process and fulfill customer orders:</p>
-            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
-                <li>View pending orders</li>
-                <li>Update order status</li>
-                <li>Generate shipping labels</li>
-                <li>Track order fulfillment</li>
-                <li>Handle returns and refunds</li>
-            </ul>
+        <!-- Add Product Tab -->
+        <div id="add-product" class="tab-content">
+            <div class="dashboard-card">
+                <h2>Add New Product</h2>
+                <form id="addProductForm" class="product-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productName">Product Name *</label>
+                            <input type="text" id="productName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategory">Category *</label>
+                            <select id="productCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="Educational Material">Educational Material</option>
+                                <option value="Digital Product">Digital Product</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Books & Media">Books & Media</option>
+                                <option value="Home & Garden">Home & Garden</option>
+                                <option value="Fashion & Accessories">Fashion & Accessories</option>
+                                <option value="Health & Beauty">Health & Beauty</option>
+                                <option value="Sports & Outdoors">Sports & Outdoors</option>
+                                <option value="Handmade Item">Handmade Item</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productPrice">Price ($) *</label>
+                            <input type="number" id="productPrice" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productStock">Stock Quantity *</label>
+                            <input type="number" id="productStock" min="0" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productDescription">Description *</label>
+                        <textarea id="productDescription" rows="4" required placeholder="Describe your product, its features, and benefits..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productFeatures">Key Features (one per line)</label>
+                        <textarea id="productFeatures" rows="3" placeholder="Enter key features of your product&#10;Example:&#10;- Professional formatting&#10;- Editable templates&#10;- Ready to use"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productTargetAudience">Target Audience</label>
+                            <input type="text" id="productTargetAudience" placeholder="e.g., Students, Parents, Tech users, etc.">
+                        </div>
+                        <div class="form-group">
+                            <label for="productFormat">File Format / Physical Details</label>
+                            <input type="text" id="productFormat" placeholder="e.g., PDF, DOCX, Size, Color, Weight, etc.">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productImage">Product Image URL</label>
+                        <input type="url" id="productImage" placeholder="https://example.com/image.jpg">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productPhoto">Upload Product Photo</label>
+                        <div class="photo-upload-container">
+                            <div class="photo-upload-area" id="photoUploadArea">
+                                <input type="file" id="productPhoto" accept="image/*" style="display: none;">
+                                <div class="upload-placeholder" id="uploadPlaceholder">
+                                    <div class="upload-icon">📷</div>
+                                    <p>Click to upload photo</p>
+                                    <p class="upload-hint">or drag and drop</p>
+                                </div>
+                                <img id="photoPreview" class="photo-preview" style="display: none;">
+                            </div>
+                            <div class="photo-actions" id="photoActions" style="display: none;">
+                                <button type="button" onclick="removePhoto()" class="action-btn danger small">Remove Photo</button>
+                                <button type="button" onclick="changePhoto()" class="action-btn secondary small">Change Photo</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="action-btn primary">Add Product</button>
+                        <button type="button" onclick="showTab('products')" class="action-btn secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
 
-        <div class="dashboard-card">
-            <h2>Analytics & Reports</h2>
-            <p>Track your business performance:</p>
-            <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
-                <li>Sales analytics and trends</li>
-                <li>Customer behavior insights</li>
-                <li>Product performance reports</li>
-                <li>Revenue and profit analysis</li>
-                <li>Marketing campaign effectiveness</li>
-            </ul>
-        </div>
-
-        <div class="dashboard-card">
-            <h2>Quick Actions</h2>
-            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                <button onclick="alert('Add Product functionality would be implemented here')" style="background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Add Product</button>
-                <button onclick="alert('View Orders functionality would be implemented here')" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">View Orders</button>
-                <button onclick="alert('Analytics functionality would be implemented here')" style="background: #ffc107; color: #333; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Analytics</button>
-                <button onclick="alert('Settings functionality would be implemented here')" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Settings</button>
+        <!-- Orders Tab -->
+        <div id="orders" class="tab-content">
+            <div class="dashboard-card">
+                <h2>Order Management</h2>
+                <p>Process and fulfill customer orders:</p>
+                <ul style="color: #666; line-height: 1.6; margin-left: 20px;">
+                    <li>View pending orders</li>
+                    <li>Update order status</li>
+                    <li>Generate shipping labels</li>
+                    <li>Track order fulfillment</li>
+                    <li>Handle returns and refunds</li>
+                </ul>
+                <div style="margin-top: 20px;">
+                    <button onclick="alert('Order management functionality would be implemented here')" class="action-btn primary">View Orders</button>
+                </div>
             </div>
         </div>
     </main>
@@ -92,6 +200,216 @@
         if (auth.protectPage('seller')) {
             // Display user info in header
             auth.displayUserInfo();
+            
+            // Load seller's products
+            loadSellerProducts();
+        }
+
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from all tab buttons
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Load products if switching to products tab
+            if (tabName === 'products') {
+                loadSellerProducts();
+            }
+        }
+
+        // Load seller's products
+        function loadSellerProducts() {
+            const currentUser = auth.getCurrentUser();
+            if (!currentUser) return;
+
+            const products = JSON.parse(localStorage.getItem('products') || '[]');
+            const sellerProducts = products.filter(product => product.sellerId === currentUser.id);
+            
+            const productsList = document.getElementById('productsList');
+            const noProducts = document.getElementById('noProducts');
+            const totalProducts = document.getElementById('totalProducts');
+            
+            // Update total products count
+            totalProducts.textContent = sellerProducts.length;
+            
+            if (sellerProducts.length === 0) {
+                productsList.style.display = 'none';
+                noProducts.style.display = 'block';
+            } else {
+                productsList.style.display = 'grid';
+                noProducts.style.display = 'none';
+                
+                productsList.innerHTML = sellerProducts.map(product => `
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="${product.photoData || product.image || 'https://via.placeholder.com/200x150?text=No+Image'}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/200x150?text=No+Image'">
+                        </div>
+                        <div class="product-info">
+                            <h3>${product.name}</h3>
+                            <p class="product-category">${product.category}</p>
+                            <p class="product-price">$${product.price}</p>
+                            <p class="product-stock">Stock: ${product.stock}</p>
+                            <div class="product-actions">
+                                <button onclick="editProduct('${product.id}')" class="action-btn secondary small">Edit</button>
+                                <button onclick="deleteProduct('${product.id}')" class="action-btn danger small">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Add product functionality
+        document.getElementById('addProductForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const currentUser = auth.getCurrentUser();
+            if (!currentUser) {
+                alert('Please log in to add products');
+                return;
+            }
+            
+            const productData = {
+                id: Date.now().toString(),
+                sellerId: currentUser.id,
+                name: document.getElementById('productName').value,
+                category: document.getElementById('productCategory').value,
+                price: parseFloat(document.getElementById('productPrice').value),
+                stock: parseInt(document.getElementById('productStock').value),
+                description: document.getElementById('productDescription').value,
+                features: document.getElementById('productFeatures').value.split('\n').filter(f => f.trim()),
+                targetAudience: document.getElementById('productTargetAudience').value,
+                format: document.getElementById('productFormat').value,
+                image: document.getElementById('productImage').value,
+                photoData: document.getElementById('photoPreview').src || null,
+                createdAt: new Date().toISOString()
+            };
+            
+            // Save product to localStorage
+            const products = JSON.parse(localStorage.getItem('products') || '[]');
+            products.push(productData);
+            localStorage.setItem('products', JSON.stringify(products));
+            
+            // Reset form
+            document.getElementById('addProductForm').reset();
+            removePhoto(); // Reset photo upload
+            
+            // Show success message and switch to products tab
+            alert('Product added successfully!');
+            showTab('products');
+        });
+
+        // Photo upload functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const photoUploadArea = document.getElementById('photoUploadArea');
+            const photoInput = document.getElementById('productPhoto');
+            const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+            const photoPreview = document.getElementById('photoPreview');
+            const photoActions = document.getElementById('photoActions');
+
+            // Click to upload
+            photoUploadArea.addEventListener('click', function() {
+                photoInput.click();
+            });
+
+            // File input change
+            photoInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    handlePhotoUpload(file);
+                }
+            });
+
+            // Drag and drop functionality
+            photoUploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                photoUploadArea.classList.add('drag-over');
+            });
+
+            photoUploadArea.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                photoUploadArea.classList.remove('drag-over');
+            });
+
+            photoUploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                photoUploadArea.classList.remove('drag-over');
+                
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.type.startsWith('image/')) {
+                        handlePhotoUpload(file);
+                    } else {
+                        alert('Please upload an image file.');
+                    }
+                }
+            });
+        });
+
+        function handlePhotoUpload(file) {
+            if (file.size > 5 * 1024 * 1024) { // 5MB limit
+                alert('Image size should be less than 5MB.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const photoPreview = document.getElementById('photoPreview');
+                const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+                const photoActions = document.getElementById('photoActions');
+
+                photoPreview.src = e.target.result;
+                photoPreview.style.display = 'block';
+                uploadPlaceholder.style.display = 'none';
+                photoActions.style.display = 'flex';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removePhoto() {
+            const photoInput = document.getElementById('productPhoto');
+            const photoPreview = document.getElementById('photoPreview');
+            const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+            const photoActions = document.getElementById('photoActions');
+
+            photoInput.value = '';
+            photoPreview.style.display = 'none';
+            photoPreview.src = '';
+            uploadPlaceholder.style.display = 'block';
+            photoActions.style.display = 'none';
+        }
+
+        function changePhoto() {
+            document.getElementById('productPhoto').click();
+        }
+
+        // Edit product (placeholder function)
+        function editProduct(productId) {
+            alert('Edit product functionality would be implemented here for product ID: ' + productId);
+        }
+
+        // Delete product
+        function deleteProduct(productId) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                const products = JSON.parse(localStorage.getItem('products') || '[]');
+                const updatedProducts = products.filter(product => product.id !== productId);
+                localStorage.setItem('products', JSON.stringify(updatedProducts));
+                
+                // Reload products
+                loadSellerProducts();
+                alert('Product deleted successfully!');
+            }
         }
     </script>
 </body>
