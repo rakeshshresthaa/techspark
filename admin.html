@@ -8,16 +8,38 @@
 </head>
 <body>
     <div class="admin-container">
-        <header class="admin-header">
-            <h1>Admin Panel</h1>
-            <button class="logout-btn" onclick="logout()">Logout</button>
-            <nav class="admin-nav">
-                <button class="tab-btn active" data-tab="pending-sellers">Pending Sellers</button>
-                <button class="tab-btn" data-tab="pending-products">Pending Products</button>
-                <button class="tab-btn" data-tab="published-products">Published Products</button>
-                <button class="tab-btn" data-tab="seller-list">Seller List</button>
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h1>Admin Panel</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="sidebar-btn active" data-tab="pending-sellers">
+                    <span class="btn-icon">👥</span>
+                    Pending Sellers
+                </button>
+                <button class="sidebar-btn" data-tab="pending-products">
+                    <span class="btn-icon">📦</span>
+                    Pending Products
+                </button>
+                <button class="sidebar-btn" data-tab="published-products">
+                    <span class="btn-icon">✅</span>
+                    Published Products
+                </button>
+                <button class="sidebar-btn" data-tab="seller-list">
+                    <span class="btn-icon">🏪</span>
+                    Seller List
+                </button>
             </nav>
-        </header>
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">
+                    <span class="btn-icon">🚪</span>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
         <main class="admin-main">
             <section id="pending-sellers" class="tab-section active">
                 <h2>Pending Sellers <span id="pending-sellers-count"></span></h2>
