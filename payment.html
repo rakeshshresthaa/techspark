@@ -90,20 +90,16 @@
         // Handle payment form
         document.getElementById('paymentForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            console.log('Form submitted');
             // Check payment method and required fields
             const method = document.querySelector('input[name="paymethod"]:checked').value;
-            console.log('Selected payment method:', method);
             if (method === 'esewa') {
                 const esewaId = document.getElementById('esewaId').value.trim();
-                console.log('eSewa ID:', esewaId);
                 if (!esewaId) {
                     alert('Please enter your eSewa ID.');
                     return;
                 }
             } else if (method === 'khalti') {
                 const khaltiId = document.getElementById('khaltiId').value.trim();
-                console.log('Khalti ID:', khaltiId);
                 if (!khaltiId) {
                     alert('Please enter your Khalti ID.');
                     return;
@@ -111,15 +107,12 @@
             }
             // Count as a buy of product
             const title = params.get('title');
-            console.log('Product title:', title);
             if (title) {
                 let purchases = JSON.parse(localStorage.getItem('purchases') || '{}');
                 purchases[title] = (purchases[title] || 0) + 1;
                 localStorage.setItem('purchases', JSON.stringify(purchases));
-                console.log('Updated purchases:', purchases);
             }
             alert('Payment successful!');
-            console.log('Redirecting to customer.html');
             window.location.href = 'customer.html';
         });
     </script>
