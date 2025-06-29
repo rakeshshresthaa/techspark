@@ -18,6 +18,9 @@ body {
     border-bottom: 1px solid #ececec;
     background: #fff;
     border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 .admin-header h1 {
     margin: 0 0 18px 0;
@@ -104,6 +107,23 @@ body {
     border: 1px solid #ffd6d6;
 }
 .delete-btn:hover {
+    background: #ffeaea;
+    color: #7a0000;
+}
+.logout-btn {
+    margin-left: auto;
+    background: #fff0f0;
+    color: #a70000;
+    border: 1px solid #ffd6d6;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+.logout-btn:hover {
     background: #ffeaea;
     color: #7a0000;
 }
